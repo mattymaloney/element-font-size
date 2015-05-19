@@ -21,6 +21,11 @@ var Size = (function() {
     // from our private functions.
     _self = this;
 
+    // TODO - do we need to be returning this
+    //        value if we use a "safe" constructor,
+    //        guaranteeing that this the object is created
+    //        with the new keyword?
+    //
     // Why does it seem to work even when 
     // I don't return self? I think it's too 
     // late. Must sleep. My warm wife is calling me.
@@ -105,6 +110,11 @@ var Size = (function() {
     _em();
     _rem();
     _pt();
+    
+    // TODO - _calc() needs to return a value.
+    //        either the string object or the value
+    //        object depending on the value of 
+    //        preferString.
   }
   
   Size.prototype.recalc = {
@@ -213,7 +223,10 @@ var Size = (function() {
       };
       */
       
-      // TODO - these need to be read-only properties.
+      // TODO - our value.* and string.* properties need to
+      //        be read-only properties. we'll need to use
+      //        Object.defineProperty to access private value.*
+      //        and string.* variables.
       _self.value = Object.create(null, {
         px:  { writable:true, enumerable: true, value: null },
         pt:  { writable:true, enumerable: true, value: null },
